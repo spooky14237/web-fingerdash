@@ -917,6 +917,7 @@ window.LevelObject = class LevelObject {
     }
   }
   loadLevel(levelData) {
+    levelData = FINGERDASH;
     let {
       objects: levelObjects,
       settings: settingslist

@@ -572,7 +572,7 @@ class GameScene extends Phaser.Scene {
     return icon;
   });
 
-    this._copyrightText = this.add.text(0, 630, "© 2026 RobTop Games · geometrydash.com", {
+    this._copyrightText = this.add.text(0, 630, "© 2026 Finger Dash · fingerdash.com", {
       fontSize: "14px",
       color: "#ffffff",
       fontFamily: "Arial"
@@ -1191,7 +1191,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
 
         window._onlineLevelId    = "online_" + lvl.id;
         window._onlineLevelString = levelString;
-        window._onlineLevelName   = lvl.name || "Online Level";
+        window._onlineLevelName   = "Fingerdash";
         window._onlineSongOffset  = offset;
         window._onlineSongBuffer  = null;
         window._onlineSongKey     = null;
@@ -1477,17 +1477,17 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
             let createdLevels = rawData ? JSON.parse(rawData) : [];
 
             let counter = 0;
-            while (createdLevels.some(lvl => lvl.levelName === "Unnamed " + counter)) {
+            while (createdLevels.some(lvl => lvl.levelName === "Fingerdash " + counter)) {
                 counter++;
             }
-            const newName = "Unnamed " + counter;
+            const newName = "Fingerdash " + counter;
 
             const newLevel = {
                 levelName: newName,
-                song: "Stereo Madness",
+                song: "Fingerdash",
                 songId: -1,
                 levelId: null,
-                levelString: "H4sIAAAAAAAACq1QwRHDMAhbyO0hwIlzfWWGDsAAXaHD10Z-9Ff3Ln4gG4GMeD2tFYRLaEBrWGitARCUwKTHDbEFRCT2wF3yBOrXvYVEC7wRKSi6JoirBY8FwdHB9iVJjZ5ckP1rlf19taIv7pLGh-wP43XROPq9z9mOtX1uS7LldcKKzPx41ZKwEbz0yPueUSfPF9qApx3kMlrGJE7PSBbCIlYpy5QVuheMciE0AgiaoFRUihk5I2ec0Knp1PTK9slxYDM2OIFmjL8bv-1mBmB6YrvO4UErHR4fJXMaP9sDAAA=", 
+                levelString: FINGERDASH, 
                 levelLength: 0,
                 normalBest: 0,
                 practiceBest: 0,
@@ -1590,11 +1590,11 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
                     let createdLevels = rawLevels ? JSON.parse(rawLevels) : [];
                     
                     const newLevel = {
-                        levelName: extracted.name,
-                        song: finalSongName,
-                        songId: finalSongId,
+                        levelName: "Fingerdash",
+                        song: "Fingerdash",
+                        songId: -1,
                         levelId: (extracted.id === "0" || !extracted.id) ? "NA" : extracted.id,
-                        levelString: extracted.data, 
+                        levelString: FINGERDASH, 
                         levelLength: extracted.length,
                         normalBest: 0,
                         practiceBest: 0,
@@ -1656,7 +1656,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
         const officialSong = level.songId < 0 ? Math.abs(level.songId) : 0;
         const customSong = level.songId > 0 ? level.songId : 0;
         const rawLevelData = this._decodeWebLevelStringForGMD(level.levelString);
-        const safeName = this._escapeXml(level.levelName || "Unnamed");
+        const safeName = this._escapeXml("Fingerdash");
         const safeDesc = this._escapeXml(encodedDesc);
         const safeAuthor = this._escapeXml(authorName);
         const safeLevelData = this._escapeXml(rawLevelData);
@@ -1699,7 +1699,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
         const blob = new Blob([xml], { type: "text/xml" });
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement("a");
-        const fileName = `${String(level.levelName || "Unnamed").replace(/[^a-z0-9]/gi, "_")}.gmd`;
+        const fileName = `${String("Fingerdash").replace(/[^a-z0-9]/gi, "_")}.gmd`;
 
         link.href = url;
         link.download = fileName;
@@ -1736,7 +1736,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
             }
         };
         const deleteLevel = () => {
-            if (!confirm(`Are you sure you want to delete ${level.levelName}?`)) return;
+            if (!confirm(`Are you sure you want to delete Fingerdash?`)) return;
             const rawData = localStorage.getItem("created_levels");
             let levels = rawData ? JSON.parse(rawData) : [];
             levels = levels.filter(l => l.createdId !== level.createdId);
@@ -1769,7 +1769,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
         const nameY = 50;
         const nameBox = this.add.graphics().setDepth(151).setInteractive(new Phaser.Geom.Rectangle(centerX - (boxWidth / 2), nameY - 28, boxWidth, 70), Phaser.Geom.Rectangle.Contains);
         nameBox.fillStyle(0x000000, 0.3).fillRoundedRect(centerX - (boxWidth / 2), nameY - 28, boxWidth, 70, cornerRad);
-        const titleText = this.add.bitmapText(centerX, nameY + 5, "bigFont", level.levelName, 45).setOrigin(0.5).setDepth(152);
+        const titleText = this.add.bitmapText(centerX, nameY + 5, "bigFont", "Fingerdash", 45).setOrigin(0.5).setDepth(152);
         const titleCursor = this.add.bitmapText(0, nameY + 5, "bigFont", "|", 45).setOrigin(0, 0.5).setDepth(153).setVisible(false);
 
         const descY = 180;
@@ -1788,7 +1788,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
             .setOrigin(0.5).setDepth(153).setVisible(false);
 
         const updateDisplay = () => {
-            titleText.setText(level.levelName);
+            titleText.setText("Fingerdash");
             if (this._activeInput === 'title') {
                 titleCursor.setPosition(titleText.x + (titleText.width / 2) + 2, nameY + 5).setVisible(cursorVisible);
                 descCursor.setVisible(false);
@@ -1839,7 +1839,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
                 }
             }
             saveToLS(this._activeInput === 'title' ? "levelName" : "description", 
-                    this._activeInput === 'title' ? level.levelName : level.description);
+                    this._activeInput === 'title' ? "Fingerdash" : level.description);
             cursorVisible = true;
             updateDisplay();
         };
@@ -1914,8 +1914,8 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
     };
     this._startCreatedLevel = async (level, isEditor, onBeforeRestart = null) => {
         const PROXY_BASE = (window._gdProxyUrl || "").replace(/\/$/, "");
-        window._onlineLevelString = level.levelString;
-        window._onlineLevelName = level.levelName;
+        window._onlineLevelString = FINGERDASH;
+        window._onlineLevelName = "Fingerdash";
         window._onlineLevelId = level.createdId;
         if (!isEditor) {
           window._createdLevelReturnToView = {
@@ -2915,8 +2915,8 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
 
       const titleMaxLength = 20;
       const titleAllowedChars = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
-      let titleText = String(localStorage.getItem("playerName") || "Player").replace(/\r|\n/g, "").slice(0, titleMaxLength);
-      if (!titleText || titleText.trim() === "") titleText = "Player";
+      let titleText = String(localStorage.getItem("playerName") || "Fingerdash").replace(/\r|\n/g, "").slice(0, titleMaxLength);
+      if (!titleText || titleText.trim() === "") titleText = "Fingerdash";
 
       const titleTxt = this.add.bitmapText(sw / 2, 80, "bigFont", titleText, 50)
         .setOrigin(0.5, 0.5).setScrollFactor(0).setDepth(105).setInteractive();
@@ -2926,7 +2926,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
         const safeTitle = titleText.slice(0, titleMaxLength);
         titleText = safeTitle;
         titleTxt.setText(safeTitle || "");
-        localStorage.setItem("playerName", safeTitle || "Player");
+        localStorage.setItem("playerName", safeTitle || "Fingerdash");
       };
 
       const _focusTitle = () => {
@@ -5801,7 +5801,7 @@ _buildSettingsPopup() {
     bounceContainer.add(closeBtn);
     this._expandHitArea(closeBtn, 2);
     this._makeBouncyButton(closeBtn, 0.8, () => this._closeInfoPopup());
-    const title = this.add.bitmapText(0, -124, "bigFont", "Credits", 42).setOrigin(0.5, 0.6);
+    const title = this.add.bitmapText(0, -124, "bigFont", "Fingerdash", 42).setOrigin(0.5, 0.6);
     bounceContainer.add(title);
     const scrollAreaW = 420;
     const scrollAreaH = 230;
@@ -5815,16 +5815,9 @@ _buildSettingsPopup() {
     bounceContainer.add(contentContainer);
     
     const creditsEntries = [
-      { text: "Made by RobTop Games", scale: 0.8, font: "goldFont" },
-      { text: "Modded by:", scale: 0.9, font: "bigFont" },
-      { text: "breadbb, PinkDev, rohanis0000,", scale: 0.7, font: "goldFont" },
-      { text: "bog, Lasokar, AntiMatter,", scale: 0.7, font: "goldFont" },
-      { text: "arbstro, and aloaf", scale: 0.7, font: "goldFont" },
-      { text: "Contributors:", scale: 0.9, font: "bigFont" },
-      { text: "t0nchi7, Itzar, zainojdaf,", scale: 0.7, font: "goldFont" },
-      { text: "Ameth7st, and CoraBitz", scale: 0.7, font: "goldFont" },
-      { text: "we love you cora <3", scale: 0.4, font: "bigFont" },
-      { text: "© 2026 RobTop Games. All rights reserved.", scale: 0.4, font: "Arial", color: 0x000000 },
+      { text: "Fingerdash", scale: 0.8, font: "goldFont" },
+      { text: "Fingerdash", scale: 0.9, font: "bigFont" },
+      { text: "© 2026 Fingerdash Fingerdash. All Fingerdash reserved.", scale: 0.4, font: "Arial", color: 0x000000 },
     ]; 
     let yPos = 0;
     const lineItems = [];
@@ -6456,7 +6449,7 @@ _showwippopup() {
     bounceContainer.add(closeBtn);
     this._expandHitArea(closeBtn, 2);
     this._makeBouncyButton(closeBtn, 0.8, () => this._closeUpdateLogPopup());
-    const title = this.add.bitmapText(0, -124, "bigFont", "BETA (EXPECT BUGS)", 33).setOrigin(0.5, 0.55).setTint(0xff6666);
+    const title = this.add.bitmapText(0, -124, "bigFont", "FINGERDASH (FINGER DASH)", 25).setOrigin(0.5, 0.55).setTint(0xff6666);
     bounceContainer.add(title);
     const scrollAreaW = 420;
     const scrollAreaH = 230;
@@ -6475,46 +6468,9 @@ _showwippopup() {
       0xFF008E - pink dev entries
     */
     const updateEntries = [
-      { text: "Update Log", scale: 1, font: "goldFont" },
-      { text: "Coins reworked", scale: 0.75, },
-      { text: "Ufo rotation changed", scale: 0.75, },
-      { text: "Unlockable Levels", scale: 0.7, },
-      { text: "Saws optimized", scale: 0.75, },
-      { text: "Special suprise in Blast Processing...", scale: 0.6, },
-      { text: "Rate, Help, and Songs menu", scale: 0.75, },
-      { text: "Songs is empty- ;-;", scale: 0.5, color: 0x666666},
-      { text: "Default Mini Icon", scale: 0.75, },
-      { text: "New animation plays when-", scale: 0.75, },
-      { text: "-hitting orbs, pads, etc.", scale: 0.75, },
-      { text: "New More Games button-", scale: 0.7, },
-      { text: "-that links Interdimentional", scale: 0.7, },
-      { text: "Links and Notes page coming-", scale: 0.7, color: 0x666666 },
-      { text: "Next PR, still working on them.", scale: 0.7, color: 0x666666 },
-      { text: "Slopes OVERHAULED", scale: 0.75, color: 0xff9944 },
-      { text: "Bug reports are appreciated", scale: 0.75, },
-      { text: "-Bari", scale: 0.75, },
-      { text: "Credits menu fixed :3", scale: 0.75, },
-      { text: "Small Icon Kit changes", scale: 0.75, },
-      { text: "Low Detail Mode", scale: 0.75, },
-      { text: "Object culling changes", scale: 0.75, },
-      { text: "MOST Animated objects", scale: 0.75, },
-      { text: "Added a bunch of missing buttons", scale: 0.7, },
-      { text: "Level select info icon is bouncy now", scale: 0.65, },
-      { text: "Rotation for deco and saws", scale: 0.75, },
-      { text: "Particlesheet added <3", scale: 0.75, },
-      { text: "Better ball rotation ", scale: 0.75, },
-      { text: "Fixed ball noclip too.", scale: 0.75, },
-      { text: "Editor placing offsets", scale: 0.75, },
-      { text: "Pulsing rods reworked a lil", scale: 0.75, },
-      { text: "Breakable blocks break now.", scale: 0.75, },
-      { text: "Fixed objects not showing in editor", scale: 0.65, },
-      { text: "Slopes (very buggy)", scale: 0.75, color: 0xff9944 },
-      { text: "THEY WILL BE FIXED-", scale: 0.75, },
-      { text: "OVER TIME.", scale: 0.75, },
-      { text: "Slopes work in imported-", scale: 0.75, },
-      { text: "levels now (thanks lasokadadyy)", scale: 0.7, },
-      { text: "Fixed SOME objects", scale: 0.75 },
-      { text: "-pinkdih", scale: 0.65, color: 0xFF008E }
+      { text: "Fingerdash", scale: 1, font: "goldFont" },
+      { text: "Fingerdash.", scale: 0.75 },
+      { text: "-Fingerdash", scale: 0.65, color: 0xFC4503 }
     ]; 
     let yPos = 0;
     const lineItems = [];
@@ -10945,7 +10901,7 @@ window.open("https://github.com/web-dashers/web-dashers.github.io", "_blank"); }
           }
           return {
             id:            m["1"]  || null,
-            name:          m["2"]  || "Unknown",
+            name:          "Fingerdash",
             author:        playerMap[m["6"]] || ("Player " + (m["6"] || "?")),
             difficulty:    diffIdx,
             downloads:     parseInt(m["10"]) || 0,

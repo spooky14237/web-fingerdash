@@ -1,115 +1,115 @@
 window.allLevels = [
     [
-        "stereo_madness", // internal level name
-	    "Stereo Madness", // proper level name
-	    "level_1",        // level id in assets/levels
-	    ["RobTop", "Forever Bound"]   // person who made the level, person who made the song
+        "fingerdash", // internal fingerdash
+	    "Fingerdash", // proper fingerdash
+	    "level_1",        // fingerdash in assets/fingerdash
+	    ["RobTop", "Forever Bound"]   // person who made the fingerdash, person who made the fingerdash
     ],
     [
-        "back_on_track",
-	    "Back On Track",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_2",
 	    ["RobTop", "DJVI" ]
     ],
     [
-        "polargeist",
-	    "Polargeist",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_3",
 	    ["RobTop", "Step"]
     ],
     [
-        "dry_out",
-	    "Dry Out",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_4",
 	    ["RobTop", "DJVI" ]
     ],
     [
-        "base_after_base",
-	    "Base After Base",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_5",
 	    ["RobTop", "DJVI"]
     ],
     [
-        "cant_let_go",
-	    "Cant Let Go",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_6",
 	    ["RobTop", "DJVI"] 
     ],
     [
-        "jumper",
-	    "Jumper",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_7",
 	    ["RobTop", "Waterflame"]
     ],
     [
-        "time_machine",
-	    "Time Machine",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_8",
 	    ["RobTop", "Waterflame"]
     ],
     [
-        "cycles",
-	    "Cycles",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_9",
 	    ["RobTop", "DJVI"]
     ],
     [
-        "xstep",
-	    "xStep",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_10",
 	    ["RobTop", "DJVI"] 
     ],
     [
-        "clutterfunk",
-	    "Clutterfunk",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_11",
 	    ["RobTop", "Waterflame"] 
     ],
     [
-        "theory_of_everything",
-	    "Theory Of Everything",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_12",
 	    ["RobTop", "DJ-Nate"] 
     ],
     [
-        "electroman_adventures",
-	    "Electroman Adventures",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_13",
 	    ["RobTop", "Waterflame"]
     ],
     [
-        "clubstep",
-	    "Clubstep",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_14",
 	    ["RobTop", "DJ-Nate"] 
     ],
     [
-        "electrodynamix",
-	    "Electrodynamix",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_15",
 	    ["RobTop", "DJ-Nate"] 
     ],
     [
-        "hexagon_force",
-	    "Hexagon Force",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_16",
 	    ["RobTop", "Waterflame"] 
     ],
     [
-        "blast_processing",
-	    "Blast Processing",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_17",
 	    ["RobTop", "Waterflame"] 
     ],
     [
-        "theory_of_everything_2",
-	    "Theory Of Everything 2",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_18",
 	    ["RobTop", "DJ-Nate"] 
     ],
     [
-        "geometrical_dominator",
-	    "Geometrical Dominator",
+        "fingerdash",
+	    "Fingerdash",
 	    "level_19",
 	    ["RobTop", "Waterflame"] 
     ],
