@@ -250,62 +250,55 @@ class AudioManager {
     return true;
   }
   startMusic(StartPosOffset = 0) {
-    let savedPosition = 0;
-    let savedKey = null;
-    if (this._music && this._music.isPlaying) {
-      savedPosition = this._music.seek || 0;
-      savedKey = this._music.key;
-    }  
+    const songKey = "forced_fingerdash";
+  
     if (this._music) {
       this._music.stop();
       this._music.destroy();
+      this._music = null;
     }
-    if (this._shouldUsePracticeSong()) {
-      const practiceSongKey = "StayInsideMe";
-      if (this._scene.cache.audio.exists(practiceSongKey)) {
-        this._music = this._scene.sound.add(practiceSongKey, {
-          loop: true,
+  
+    const audioPath = "assets/music/Fingerdash.mp3";
+    const loader = this._scene?.load;
+  
+    if (!this._scene.cache.audio.exists(songKey)) {
+      if (!loader) return;
+  
+      const playAfterLoad = () => {
+        if (!this._scene.cache.audio.exists(songKey)) return;
+  
+        this._music = this._scene.sound.add(songKey, {
+          loop: false,
           volume: this._effectiveVolume()
         });
+  
         this._music.play();
-        if (savedKey === practiceSongKey && savedPosition > 0) {
-          this._music.seek = savedPosition;
-        }
+        this._music.seek = StartPosOffset;
         this._setupAnalyser();
         this._musicPlaying = true;
-        return;
+      };
+  
+      loader.audio(songKey, audioPath);
+      loader.once("complete", playAfterLoad);
+  
+      if (!loader.isLoading()) {
+        loader.start();
       }
-    }
-    if (window._onlineSongBuffer && window._onlineSongKey === window.currentlevel?.[0]) {
-      const startOffset = this._getLevelSongStartOffset();
-      this._playOnlineBuffer(window._onlineSongBuffer, startOffset + StartPosOffset);
-      this._setupAnalyser();
-      this._musicPlaying = true;
+  
       return;
     }
-    const _songKey = window.currentlevel?.[0];
-    if (!_songKey) {
-      this._setupAnalyser();
-      return;
-    }
-    if (!this._scene.cache.audio.exists(_songKey)) {
-      if (this._loadMissingOnlineSong(_songKey, StartPosOffset) || this._loadMissingOfficialSong(_songKey, StartPosOffset)) {
-        this._setupAnalyser();
-        return;
-      }
-      this._setupAnalyser();
-      return;
-    }
-    this._music = this._scene.sound.add(_songKey, {
+  
+    this._music = this._scene.sound.add(songKey, {
       loop: false,
       volume: this._effectiveVolume()
     });
+  
     this._music.play();
-    const startOffset = this._getLevelSongStartOffset();
-    this._music.seek = startOffset + StartPosOffset;
+    this._music.seek = StartPosOffset;
+  
     this._setupAnalyser();
     this._musicPlaying = true;
-  }
+}
   _playOnlineBuffer(audioBuffer, startOffset = 0) {
     const soundMgr = this._scene.game.sound;
     const ctx = soundMgr.context;
